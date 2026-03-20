@@ -1,0 +1,1 @@
+# /api/departments — CRUD endpoints

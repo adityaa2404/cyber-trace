@@ -1,0 +1,1 @@
+# Attack type dimension model
