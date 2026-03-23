@@ -1,18 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import IncidentList from "./pages/Incidents/IncidentList";
-import IncidentForm from "./pages/Incidents/IncidentForm";
-import UserList from "./pages/Users/UserList";
-import UserForm from "./pages/Users/UserForm";
-import SystemList from "./pages/Systems/SystemList";
-import SystemForm from "./pages/Systems/SystemForm";
-import AlertList from "./pages/Alerts/AlertList";
+import { AppLayout } from "./components/layout/app-layout";
+import Dashboard from "./pages/dashboard";
+import IncidentList from "./pages/incidents/incident-list";
+import IncidentForm from "./pages/incidents/incident-form";
+import UserList from "./pages/users/user-list";
+import UserForm from "./pages/users/user-form";
+import SystemList from "./pages/systems/system-list";
+import SystemForm from "./pages/systems/system-form";
+import AlertList from "./pages/alerts/alert-list";
 
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/incidents" element={<IncidentList />} />
         <Route path="/incidents/new" element={<IncidentForm />} />
