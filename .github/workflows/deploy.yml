@@ -1,0 +1,31 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CORS_ORIGINS: ${{ secrets.CORS_ORIGINS }}
+          DEBUG: ${{ secrets.DEBUG }}
+        script: |
+          cd ~/cyber-trace
+          git pull origin main
+          export DATABASE_URL="${DATABASE_URL}"
+          export CORS_ORIGINS="${CORS_ORIGINS}"
+          export DEBUG="${DEBUG}"
+          docker compose down
+          docker compose up --build -d
+          docker image prune -f
