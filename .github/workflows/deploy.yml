@@ -23,9 +23,9 @@ jobs:
             export DATABASE_URL="${DATABASE_URL}"
             export CORS_ORIGINS="${CORS_ORIGINS}"
             export DEBUG="${DEBUG}"
-            docker compose down
-            docker compose up --build -d
-            docker image prune -f
+            sudo docker-compose down
+            sudo docker-compose up --build -d
+            sudo docker image prune -f
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CORS_ORIGINS: ${{ secrets.CORS_ORIGINS }}
