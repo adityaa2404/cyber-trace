@@ -16,17 +16,9 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: DATABASE_URL,CORS_ORIGINS,DEBUG
           script: |
             cd ~/cyber-trace
             git pull origin main
-            export DATABASE_URL="${DATABASE_URL}"
-            export CORS_ORIGINS="${CORS_ORIGINS}"
-            export DEBUG="${DEBUG}"
             sudo docker-compose down
             sudo docker-compose up --build -d
             sudo docker image prune -f
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          CORS_ORIGINS: ${{ secrets.CORS_ORIGINS }}
-          DEBUG: ${{ secrets.DEBUG }}
